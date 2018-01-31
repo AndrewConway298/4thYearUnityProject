@@ -5,7 +5,7 @@ Direct3D:
     Renderer: Intel(R) HD Graphics (ID=0x152)
     Vendor:   Intel
     VRAM:     1008 MB
-    Driver:   10.18.10.4358
+    Driver:   10.18.10.4653
 Begin MonoManager ReloadAssembly
 Platform assembly: F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -19,11 +19,6 @@ Platform assembly: F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\M
 Loading F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\Managed\System.dll (this message is harmless)
 Platform assembly: F:\4th Year Project\3DProject\Builds\Iteration 1 Build_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.043 seconds
+- Completed reload, in  0.366 seconds
 <RI> Initializing input.
 <RI> Input initialized.
-<RI> Initialized touch support.
-UnloadTime: 1.598586 ms
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 352c -> priority: 1 
-  Thread -> id: 37bc -> priority: 1 
