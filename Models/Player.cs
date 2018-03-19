@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVCWebApp.Models
+namespace ScoresWebsite.Models
 {
-    [Table("Player")]
     public class Player
     {
-        public int Id { get; set; }
-        public int Score { get; set; }
+        public long Id { get; set; }
+        [Required]
+        public string Username { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        //public int Score { get; set; }
     }
 }

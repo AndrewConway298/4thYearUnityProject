@@ -8,6 +8,6 @@ namespace ScoresWebsite.Models
 {
     public class mvcappdb:DbContext
     {
-        public DbSet<Player> Players { get; set; }
+        public DbSet<Player> Table { get; set; }
     }
 }
