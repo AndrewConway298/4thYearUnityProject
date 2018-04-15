@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+<h2>Player Page</h2>
+<p></p>
+@if (Session["Username"] != null)
+{
+    <h3>Welcome @Session["Username"].ToString()</h3>
+    <p>
+        Please enjoy the game!
+    </p>
+    <a type="button" class="btn btn-primary btn-lg" href="https://drive.google.com/file/d/1P3kYussBCAWY8UBPdnNzAkDR7g8qzMla/view?usp=sharing">Download</a>
+}
+
+
+

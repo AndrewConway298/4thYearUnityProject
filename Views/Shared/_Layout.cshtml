@@ -8,25 +8,29 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Sharepoint Games", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Players", "index", "Player")</li>
-                    <li>@Html.ActionLink("Linked Info", "index", "Intake")</li>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" @Html.ActionLink("Leaderboards", "Index", "Player")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" @Html.ActionLink("Register", "WebRegister", "Home")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" @Html.ActionLink("Login", "WebLogin", "Home")</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" @Html.ActionLink("Payments", "Index", "Stripe")</a>
+                    </li>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -34,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Sharepoint Games 4th Year Computing Project (Andrew Conway X00121654)</p>
         </footer>
     </div>
 
