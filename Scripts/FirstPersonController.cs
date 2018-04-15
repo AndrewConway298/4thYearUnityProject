@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿//X00121654 Andrew Conway 4th Year Project
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(CharacterController))]                             //Checks for character controller
 public class FirstPersonController : MonoBehaviour {
     //Movement Variables
     public float movementSpeed = 7.5f;
@@ -12,40 +14,18 @@ public class FirstPersonController : MonoBehaviour {
     public float jumpSpeed = 7.5f;
     //Physics
     float vertVelocity = 0;
+    //Check
+    CharacterController cc;
 
 	// Use this for initialization
 	void Start () {
         Screen.lockCursor = true;
+        cc = GetComponent<CharacterController>();
         Debug.Log("Starting");
-        //StartCoroutine(Upload());
-        //Application.OpenURL("http://localhost:64537/Player?id=4&username=ABC123&score=10000");
     }
-	
-    //HttpPost Code
-    //IEnumerator Upload()
-    //{
-    //    Debug.Log("Sending data request");
-    //    WWWForm form = new WWWForm();
-    //    form.AddField("Username", "Admin");
-    //    form.AddField("Password", "Admin123");
-
-    //    UnityWebRequest www = UnityWebRequest.Post(@"http://localhost:64537/", form);
-    //    yield return www.Send();
-
-    //    if (www.isNetworkError)
-    //    {
-    //        Debug.Log(www.error);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Data: " + www.downloadHandler.text);
-    //    }
-    //}
 
 	// Update is called once per frame
 	void Update () {
-        CharacterController cc = GetComponent<CharacterController>();
-
         //Rotation(Mouse)
         float rotLR = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0, rotLR, 0);
@@ -57,6 +37,19 @@ public class FirstPersonController : MonoBehaviour {
         //Forward/Back + Left/Right
         float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+        //Sprint
+        if (Input.GetButtonDown("Fire3"))
+        {
+            movementSpeed = movementSpeed * 2f;
+            forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
+            sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+        }
+        else if (Input.GetButtonUp("Fire3"))
+        {
+            movementSpeed = movementSpeed / 2f;
+            forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
+            sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+        }
         //Jumping
         vertVelocity += Physics.gravity.y * Time.deltaTime;
 
@@ -71,24 +64,6 @@ public class FirstPersonController : MonoBehaviour {
         speed = transform.rotation * speed;
 
         cc.Move(speed * Time.deltaTime);
-	}
 
-    /*IEnumerator postRequest(string url)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("myField", "myData");
-        form.AddField("Game Name", "Mario Kart");
-
-        UnityWebRequest uwr = UnityWebRequest.Post(url, form);
-        yield return uwr.Send();
-
-        if (uwr.isNetworkError)
-        {
-            Debug.Log("Error While Sending: " + uwr.error);
-        }
-        else
-        {
-            Debug.Log("Received: " + uwr.downloadHandler.text);
-        }
-    }*/
+    }
 }

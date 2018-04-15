@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//X00121654 Andrew Conway 4th Year Project
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -8,20 +8,14 @@ using UnityEngine.UI;
 public class Login : MonoBehaviour {
     public GameObject username;
     public GameObject password;
-    private string Username;
+    public static string Username;
     private string Password;
-    public string[] players;
-    // Use this for initialization
-    void Start () {
-        
-	}
 
     public void LoginButton()
     {
         StartCoroutine(GetData());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -38,14 +32,23 @@ public class Login : MonoBehaviour {
                 LoginButton();
             }
         }
+        //Setting Inputs
         Username = username.GetComponent<InputField>().text;
         Password = password.GetComponent<InputField>().text;
     }
 
     IEnumerator GetData()
     {
-        UnityWebRequest www = UnityWebRequest.Get("http://localhost:64537/Player/Login");
+        Debug.Log("Sending data request");
+        WWWForm form = new WWWForm();
+        form.AddField("Username", Username);
+        form.AddField("Password", Password);
+        UnityWebRequest www = UnityWebRequest.Post("http://sharepointgames.azurewebsites.net/Player/UnityLogin", form);
+        www.chunkedTransfer = false;
+        Debug.Log(Username);
         yield return www.Send();
+        PlayerPrefs.SetString("Username", Username);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         if (www.isNetworkError || www.isHttpError)
         {
@@ -54,10 +57,8 @@ public class Login : MonoBehaviour {
         else
         {
             // Show results as text
+            Debug.Log("Got the data!");
             Debug.Log(www.downloadHandler.text);
-            SceneManager.LoadScene("lvl1", LoadSceneMode.Single);
-            // Or retrieve results as binary data
-            byte[] results = www.downloadHandler.data;
         }
     }
 }

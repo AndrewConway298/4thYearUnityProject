@@ -3,10 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
-using System.Collections.Generic;
-using System;
-using System.Text.RegularExpressions;
-
+using UnityEngine.SceneManagement;
 
 public class Register : MonoBehaviour {
     //public variables
@@ -19,14 +16,7 @@ public class Register : MonoBehaviour {
     private string Email;
     private string Password;
     private string ConfirmPassword;
-    //Extra variables
-    private string regForm;
-    private bool EmailValid = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
     //Register Button Submit
     public void RegisterButton()
@@ -34,7 +24,6 @@ public class Register : MonoBehaviour {
         StartCoroutine(Upload());
     }
 
-	// Update is called once per frame
 	void Update () {
         //Tab Fuction
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -73,20 +62,16 @@ public class Register : MonoBehaviour {
     {
         Debug.Log("Sending data request");
         WWWForm form = new WWWForm();
-        //form.AddField("Content-Type", "application/json");
-        //form.AddField("data", "{\"Username\":\"c\",\"Email\":\"c\",\"Password\":\"c\"}");*/
         form.AddField("Username", Username);
         form.AddField("Email", Email);
         form.AddField("Password", Password);
-        //form.AddField("ConfirmPassword", ConfirmPassword);
         //ScoresWebsite
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost:64537/Player/Register", form);
-        //New Website
-        //UnityWebRequest www = UnityWebRequest.Post("http:http://localhost:57724/Account/Register", form);
+        UnityWebRequest www = UnityWebRequest.Post("http://sharepointgames.azurewebsites.net/Player/UnityRegister", form);
         
         www.chunkedTransfer = false;
         Debug.Log(Username);
         yield return www.Send();
+
         Debug.Log(form.ToString());
         if (www.isNetworkError || www.isHttpError)
         {
